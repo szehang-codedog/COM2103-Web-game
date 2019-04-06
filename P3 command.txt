@@ -1,0 +1,35 @@
+create database Project;
+
+use Project;
+
+create table User(
+		account varchar(20) not null, 
+		password varchar(20) not null,
+		nickname varchar(20) not null,
+		email varchar(30) not null,
+		totalReward int(100) DEFAULT 0,
+		admin boolean DEFAULT 0,
+		primary key(account)
+);
+
+create table question(
+		questionNo char(2) not null,
+		question varchar(100) not null,
+		answer char(1) not null,
+		choiceA varchar(40),
+		choiceB varchar(40),
+		choiceC varchar(40),
+		choiceD varchar(40),
+		bonus int(10),
+		primary key(questionNo)
+);
+
+create table room(
+		account varchar(20) not null,
+		questionNo char(2) not null,
+		skillA boolean DEFAULT 1,
+		skillB boolean DEFAULT 1,
+		skillC boolean DEFAULT 1,
+		primary key(account),
+		foreign key(account) references user(account)
+);
